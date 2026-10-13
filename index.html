@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clocks — Timeless Watches</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: white;
+    }
+
+    /* NAVBAR */
+    nav {
+      height: 70px;
+      padding: 0 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0b0b0b;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #222;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #d4af37;
+      letter-spacing: 2px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #d4af37;
+    }
+
+    .menu-btn {
+      display: none;
+      font-size: 25px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 60px 8%;
+      background: linear-gradient(135deg, #0b0b0b 50%, #151515 50%);
+    }
+
+    .hero-text {
+      max-width: 550px;
+    }
+
+    .hero-text p {
+      color: #d4af37;
+      letter-spacing: 3px;
+      margin-bottom: 15px;
+    }
+
+    .hero-text h1 {
+      font-size: 64px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero-text span {
+      color: #d4af37;
+    }
+
+    .hero-text .description {
+      color: #aaa;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #d4af37;
+      color: #111;
+      padding: 14px 30px;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #fff;
+      transform: translateY(-3px);
+    }
+
+    .watch {
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+      border: 15px solid #333;
+      background: radial-gradient(circle, #222 0%, #111 65%);
+      box-shadow: 0 0 60px rgba(212, 175, 55, 0.25);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .watch::before {
+      content: "";
+      width: 12px;
+      height: 100px;
+      background: #d4af37;
+      position: absolute;
+      transform: rotate(30deg);
+      transform-origin: bottom;
+      bottom: 50%;
+      border-radius: 5px;
+    }
+
+    .watch::after {
+      content: "";
+      width: 10px;
+      height: 75px;
+      background: white;
+      position: absolute;
+      transform: rotate(120deg);
+      transform-origin: bottom;
+      bottom: 50%;
+      border-radius: 5px;
+    }
+
+    .center {
+      width: 18px;
+      height: 18px;
+      background: #d4af37;
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    /* PRODUCTS */
+    .products {
+      padding: 80px 8%;
+      background: #111;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      color: #999;
+      margin-bottom: 50px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .card {
+      background: #191919;
+      padding: 25px;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .product-image {
+      height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .small-watch {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      border: 10px solid #555;
+      background: #080808;
+      box-shadow: 0 0 25px rgba(212,175,55,0.15);
+    }
+
+    .gold {
+      border-color: #d4af37;
+    }
+
+    .silver {
+      border-color: #aaa;
+    }
+
+    .black {
+      border-color: #333;
+    }
+
+    .card h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      color: #d4af37;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* ABOUT */
+    .about {
+      padding: 80px 8%;
+      text-align: center;
+    }
+
+    .about p {
+      max-width: 700px;
+      margin: auto;
+      color: #aaa;
+      line-height: 1.8;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 25px;
+      text-align: center;
+      background: #050505;
+      color: #777;
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .menu-btn {
+        display: block;
+      }
+
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #111;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 60px;
+      }
+
+      .hero-text h1 {
+        font-size: 45px;
+      }
+
+      .watch {
+        width: 280px;
+        height: 280px;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="logo">CLOCKS</div>
+
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+
+    <ul id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#watches">Watches</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+
+    <div class="hero-text">
+      <p>TIMELESS ELEGANCE</p>
+
+      <h1>
+        Time Made<br>
+        <span>Beautiful.</span>
+      </h1>
+
+      <p class="description">
+        Discover premium watches designed for people who
+        appreciate timeless style, precision and elegance.
+      </p>
+
+      <a href="#watches" class="btn">Explore Watches</a>
+    </div>
+
+    <div class="watch">
+      <div class="center"></div>
+    </div>
+
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="watches">
+
+    <h2 class="section-title">Our Collection</h2>
+
+    <p class="section-subtitle">
+      Designed to make every second count.
+    </p>
+
+    <div class="product-grid">
+
+      <div class="card">
+        <div class="product-image">
+          <div class="small-watch gold"></div>
+        </div>
+
+        <h3>Clocks Gold</h3>
+        <p class="price">$199</p>
+
+        <button class="btn" onclick="buyWatch('Clocks Gold')">
+          Shop Now
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="product-image">
+          <div class="small-watch silver"></div>
+        </div>
+
+        <h3>Clocks Silver</h3>
+        <p class="price">$179</p>
+
+        <button class="btn" onclick="buyWatch('Clocks Silver')">
+          Shop Now
+        </button>
+      </div>
+
+      <div class="card">
+        <div class="product-image">
+          <div class="small-watch black"></div>
+        </div>
+
+        <h3>Clocks Black</h3>
+        <p class="price">$159</p>
+
+        <button class="btn" onclick="buyWatch('Clocks Black')">
+          Shop Now
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+
+    <h2 class="section-title">Why Clocks?</h2>
+
+    <p>
+      At Clocks, we believe a watch is more than something that tells
+      time. It's a reflection of your personality. Our watches combine
+      modern design, quality materials and timeless style.
+    </p>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <p>© 2026 Clocks. All Rights Reserved.</p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+
+    function buyWatch(product) {
+      alert("Thanks for choosing " + product + "!");
+
+      // You can replace this alert with your
+      // checkout/order page later.
+    }
+
+  </script>
+
+</body>
+</html>
